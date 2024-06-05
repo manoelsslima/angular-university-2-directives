@@ -21,6 +21,10 @@ export class AppComponent implements AfterViewInit {
 
     }
 
+    onToggle(isHightlighted: boolean) {
+      console.log(isHightlighted);
+    }
+
     ngAfterViewInit() {
 
     }

@@ -1,4 +1,4 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
 @Directive({
   selector: '[highlighted]',
@@ -8,6 +8,9 @@ export class HighlightedDirective {
 
   @Input('highlighted')
   isHightlighted = false;
+
+  @Output()
+  toggleHighlight = new EventEmitter();
 
   constructor() {
     console.log('Directive created...');
@@ -28,4 +31,16 @@ export class HighlightedDirective {
     return this.isHightlighted; // css que queremos aplicar ao elemento host dessa diretiva
   }
 
+  @HostListener('mouseover', ['$event'])
+  mouseOver($event) {
+    console.log($event);
+    this.isHightlighted = true;
+    this.toggleHighlight.emit(this.isHightlighted);
+  }
+
+  @HostListener('mouseleave')
+  mouseLeave() {
+    this.isHightlighted = false;
+    this.toggleHighlight.emit(this.isHightlighted);
+  }
 }
