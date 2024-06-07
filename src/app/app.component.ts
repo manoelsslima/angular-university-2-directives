@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren, viewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren, ViewEncapsulation, viewChild} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
@@ -7,7 +7,9 @@ import { HighlightedDirective } from './directives/highlighted.directive';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
+  //encapsulation: ViewEncapsulation.ShadowDom
 })
 export class AppComponent implements AfterViewInit {
 
